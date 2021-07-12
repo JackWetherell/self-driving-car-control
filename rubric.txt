@@ -1,0 +1,22 @@
+#######################
+### Project Rubric  ###
+#######################
+
+- Your code should compile. -> Yes.
+- The PID procedure follows what was taught in the lessons. -> Yes. Implemented PID controller in C++ based on python implementation written in lessons.
+- Describe the effect each of the P, I, D components had in your implementation. -> See below.
+- Describe how the final hyperparameters were chosen. -> See below.
+- The vehicle must successfully drive a lap around the track. -> Yes. See final.mp4
+
+
+##########################
+### Project Reflection ###
+##########################
+
+1. I first Implemented the core functionality in PID.h and PID.cpp based on the python notebook I wrote during the lessons. I tested that the behaviour for some arbitrarily chosen P, I and D coefficients matched what I found in the notebook on the straight road sections (as the target in the notebook was simple y=0).
+2. Once testing was complete I began tuning based on a guided hand tuning method I had found from recommendations online.
+3. First I set the steering angle to zero and observed that this corresponded to a actual steering angle of 0.44 degrees in the simulator due to miscalibration. I adjusted the value of the I coefficient until the correct steering angle of 0 was given and thus the effect of miscalibration is ameliorated.
+4. Then slowly increased the P coefficient until oscillations occurred. Then increased the D coefficient until they stopped. I repeated these two steps until the car could both steer with little to no oscillations, but followed the path in a timely manner.
+5. I then did some additional fine tweaking and recorded a video of a a complete lap (final.mp4).
+6. As a side note: I noticed that my coefficients were no longer appropriate when I changed the graphics settings or resolution of the simulator! Upon investigation I found that this is because we assume dt=0 when computing the time derivative (we just take the difference in the values).
+  This means that dt ends up being "rolled into" the D parameter and so becomes dependent on the simulators frame rate. In practice this would be fixed by dividing by dt in the PID code, which is measured real time in the simulator.
