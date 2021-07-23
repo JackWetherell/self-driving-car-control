@@ -17,4 +17,4 @@ The goal of this project is to build a PID controller to actuate actions for the
 ## Usage
 1. Make a build directory: `mkdir build && cd build`
 2. Compile: `cmake .. && make`
-3. Run: `./pid`. 
+3. Run: `./pid`
